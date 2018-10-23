@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>风景轮播图</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.0-dist/css/bootstrap.min.css">
+	<script type="text/javascript" src="js/jquery-2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap-3.3.0-dist/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		img{
+			width:600px;
+		}
+		.carousel{
+			width:600px;
+			margin:50px auto;
+		}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			$(".carousel").carousel({
+			interval:2000
+		});
+		})
+	</script>
+</head>
+<body>
+	<div class="carousel slide" id="parentCar">
+	<ul class="carousel-indicators">
+		<li class="active" data-target="#parentCar" data-slide-to="0"></li>
+		<li data-target="#parentCar" data-slide-to="1"></li>
+		<li data-target="#parentCar" data-slide-to="2"></li>
+		<li data-target="#parentCar" data-slide-to="3"></li>
+		<li data-target="#parentCar" data-slide-to="4"></li>
+	</ul>
+	<div class="carousel-inner">
+		<div class="item active"><img src="images/a.jpg" alt=""></div>
+		<div class="item"><img src="images/b.jpg" alt=""></div>
+		<div class="item"><img src="images/c.jpg" alt=""></div>
+		<div class="item"><img src="images/d.jpg" alt=""></div>
+		<div class="item"><img src="images/e.jpg" alt=""></div>
+	</div>
+	 <a class="carousel-control left" href="#parentCar" data-slide="prev"> 
+		<span  class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+	 <a class="carousel-control right" href="#parentCar" data-slide="next"> 
+		<span  class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+</div>
+
+</body>
+</html>

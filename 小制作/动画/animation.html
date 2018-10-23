@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画</title>
+	<style>
+	    *{
+	    	margin:0px;
+	    	padding:0px;
+	    }
+		.wrapper{
+			width:400px;
+			height:200px;
+			border: 1px solid #ccc;
+			margin:50px auto;
+			overflow-x: hidden;
+		}
+		ul{
+			width:1200px;
+			animation: move 3s 1s linear infinite;
+		}
+		ul li{
+			list-style:none;
+			width:400px;
+			height:200px;
+			float:left;
+			line-height:200px;
+			text-align: center;
+			font-size:48px;
+			color:red;
+		}
+		ul > li:nth-child(1){
+			background:url('./images/3.jpg');
+		}
+		ul > li:nth-child(2){
+			background:url('./images/4.jpg');
+		}
+		ul > li:nth-child(3){
+			background:url('./images/5.jpg');
+		}
+		@keyframes move {
+			0% {
+				margin-left: 0;
+			}
+			20%,50% {
+				margin-left: -400px;
+			}
+			70%,100%{
+				margin-left: -800px
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>

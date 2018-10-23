@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload=function(){
+			var canvas=document.getElementById("canvas");
+			var cx=canvas.getContext("2d");
+			cx.fillStyle="pink";
+			cx.fillRect(0,0,600,600);
+			function clock(){
+				//当前时间
+			var date=new Date();
+			var hour=date.getHours();
+			var min=date.getMinutes();
+			var sec=date.getSeconds();
+			hour=hour+min/60;
+			//绘制表盘
+			cx.fillStyle="green";
+			cx.beginPath();
+			cx.arc(300,300,200,0,Math.PI*2);
+			cx.closePath();
+			cx.fill();
+			//时针刻度
+			cx.strokeStyle="black";
+			for(var i=0;i<12;i++){
+				cx.save();
+				cx.translate(300,300);
+				cx.rotate(i*Math.PI/6);
+				cx.beginPath();
+				cx.moveTo(0,-180);
+				cx.lineTo(0,-200);
+				cx.closePath();
+				cx.stroke();
+				cx.fillStyle="black";
+				cx.font="14px bolder";
+				cx.rotate(Math.PI/6);
+				cx.fillText(i+1,0,-210);
+				cx.restore();
+
+			}
+			//分针刻度
+			cx.strokeStyle="black";
+			for(var i=0;i<60;i++){
+				cx.save();
+				cx.translate(300,300);
+				cx.rotate(i*Math.PI/30);
+				cx.beginPath();
+				cx.moveTo(0,-190);
+				cx.lineTo(0,-200);
+				cx.closePath();
+				cx.stroke();
+				cx.restore();
+			}
+			//绘制时针
+			cx.strokeStyle="black";
+			cx.lineWidth=5;
+			cx.save();
+			cx.translate(300,300);
+			cx.rotate(hour*Math.PI/6);
+			cx.beginPath();
+            cx.moveTo(0,10);
+            cx.lineTo(0,-70);
+			cx.closePath();
+			cx.stroke();
+			cx.restore();
+			//绘制分针
+			cx.strokeStyle="black";
+			cx.lineWidth=3;
+			cx.save();
+			cx.translate(300,300);
+			cx.rotate(min*Math.PI/3);
+			cx.beginPath();
+			cx.moveTo(0,10);
+			cx.lineTo(0,-130);
+			cx.closePath();
+			cx.stroke();
+			cx.restore();
+			//绘制秒针
+			cx.strokeStyle="red";
+			cx.lineWidth=2;
+			cx.save();
+			cx.translate(300,300);
+			cx.rotate(sec*Math.PI/30);
+			cx.beginPath();
+			cx.moveTo(0,10);
+			cx.lineTo(0,-170);
+			cx.closePath();
+			cx.stroke();
+			cx.restore();
+			//绘制交叉点
+			cx.strokeStyle="red";
+			cx.fillStyle="#ccc";
+			cx.save();
+			cx.translate(300,300);
+			cx.beginPath();
+			cx.arc(0,0,5,0,Math.PI*2);
+			cx.closePath();
+			cx.fill();
+			cx.stroke();
+			cx.restore();
+			}
+			setInterval(clock,1000);
+
+
+
+		}
+	</script>
+</head>
+<body>
+	<canvas id="canvas" width="600px" height="600px "></canvas>
+</body>
+</html>

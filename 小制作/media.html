@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        *{
+        	margin:0px;
+        	padding:0px;
+         }
+    	.wrapper ul li{
+    		list-style:none;
+    		background-color:teal;
+    		height:200px;
+    		margin-bottom:1em;
+    		text-align:center;
+    		line-height: 200px;
+    		font-size:48px;
+    		color:#ffffff;
+    	}
+    	/*pad屏*/
+    	@media screen and (min-width:768px) and (max-width: 1024px){
+    		.wrapper ul{
+    			display: flex;
+    			flex-wrap:wrap;
+    			flex-direction: row;
+    			justify-content:space-between;
+
+    		}
+    		.wrapper ul li{
+    			width:49%;
+    		}
+    	}
+
+    	/*pc端*/
+    	@media screen and (min-width:1024px){
+    		.wrapper{
+    			width:1290px;
+    			margin:0 auto;
+    		}
+    		.wrapper ul li{
+    			width:300px;
+    			float:left;
+    			margin-right:30px;
+    		}
+    		.wrapper > ul > li:last-child{
+				margin-right: 0;
+				
+			}
+    	}
+    </style>
+</head>
+<body>
+	<div class="container">
+		<div class="wrapper">
+			<ul>
+				<li>one</li>
+				<li>two</li>
+				<li>threee</li>
+				<li>four</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

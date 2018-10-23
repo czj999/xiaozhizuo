@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+	*{
+		margin:0px;
+		padding:0px;
+	}
+	ul li{
+		list-style:none;
+	}
+    .left{
+		width:200px;
+		height:500px;
+		border:1px solid black;
+		float:left;
+		margin-left:20px;
+		margin-top:20px;
+	}
+	.left li{
+		width:150px;
+		height:150px;
+		margin:10px auto;
+	}
+	.left img{
+		width:150px;
+		height:150px;
+	}
+	.left li.current{
+		border:3px solid red;
+	}
+	.right{
+		width:640px;
+		height:480px;
+		border:1px solid black;
+		float:left;
+		margin-left:120px;
+		margin-top:20px;
+		padding:20px;
+		overflow:hidden;
+	}
+	.right li{  	 
+		width:600px;
+		height:480px;
+		margin:0px auto 20px;
+
+	}
+	.right img{
+		width:600px;
+		height:480px;
+
+
+	}
+	.right ul{
+        position:relative;
+        top:0px;
+	}
+		
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		//左侧鼠标移入事件
+		//使用事件代理处理
+		var leftul=document.getElementById("leftul");
+		var leftlis=leftul.children;
+		var rightul=document.getElementById("rightul");
+		var flag=0;
+		var timeout;
+		leftul.onmouseover=function(event){
+			var target=event.target;
+			//只想要鼠标移动到图片上触发事件
+			if(target.nodeName=="IMG"){
+				//移除其他li样式，需要遍历li
+				clearTimeout(timeout);
+				Array.prototype.slice.call(leftlis,0).forEach(function(item){
+
+					item.removeAttribute("class");
+				});
+				target.parentNode.setAttribute("class","current");
+				var index =target.parentNode.getAttribute("val");
+				move(-(500*index));
+				flag=+index;
+			}
+
+		}
+		//当鼠标移出img时，再次执行定时循环
+		leftul.onmouseout=function(event){
+			var target=event.target;
+			if(target.nodeName=="IMG"){
+				timeout=setTimeout(step,3000);
+			}
+		}
+		//移动函数封装
+		function move (pos){
+			var m=function(){
+				var nowPos=parseInt(rightul.style.top,10);
+				var speed=60;
+				if(Math.abs(nowPos-pos)>speed){
+					nowPos-=((nowPos-pos)/Math.abs(nowPos-pos))*speed;
+				rightul.style.top=nowPos+"px";
+				setTimeout(m,30);
+			}else{
+				rightul.style.top=pos+"px";
+			}
+		}
+		setTimeout(m,30);
+	
+	}
+	//定时轮转
+	step=function(){
+		//去掉所有样式
+		leftlis[flag].className="";
+		if(flag>=leftlis.length-1){
+             flag=0;
+		}else{
+			 flag=flag+1;
+		}
+		leftlis[flag].className="currnet";
+		move(-500*flag);
+		timeout=setTimeout(step,2000);
+	}
+	timeout=setTimeout(step,2000);
+} 
+
+	</script>
+</head>
+<body>
+	<div class="left">
+		<ul id="leftul">
+			<li val="0" class="current"><img src="./images/a.jpg" alt=""></li>
+			<li val="1"><img src="./images/b.jpg" alt=""></li>
+			<li val="2"><img src="./images/c.jpg" alt=""></li>
+		</ul>
+	</div>
+	<div class="right">
+		<ul id="rightul">
+			<li><img src="./images/a.jpg" alt=""></li>
+			<li><img src="./images/b.jpg" alt=""></li>
+			<li><img src="./images/c.jpg" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>

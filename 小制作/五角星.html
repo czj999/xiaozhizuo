@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	window.onload=function(){
+		var canvas=document.getElementById("canvas");
+		var cx=canvas.getContext("2d");
+		cx.fillStyle="lightblue";
+		cx.fillRect(0,0,600,600);
+
+        cx.strokeStyle="black";
+        cx.fillStyle="red";
+		cx.beginPath();
+		var dx=200;
+		var dy=200;
+		var s=100;
+		var dig=2*Math.PI/5*2;
+
+		for(var i=0;i<5;i++){
+			var x=Math.sin(i*dig);
+			var y=Math.cos(i*dig);
+			cx.lineTo(dx+s*x,dy+s*y);
+
+		}
+		
+		cx.closePath();
+	    cx.fill();
+		cx.stroke();
+
+
+		}
+	</script>
+
+</head>
+<body>
+<canvas id="canvas" width="600px" height="600px"></canvas>
+	
+</body>
+</html>

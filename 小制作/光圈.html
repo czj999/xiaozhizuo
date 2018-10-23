@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		
+	<script type="text/javascript">
+		window.onload=function(){
+			var canvas=document.getElementById("canvas");
+			var cx=canvas.getContext("2d");
+			cx.fillStyle="lightblue";
+			cx.fillRect(0,0,600,600);
+			
+
+			var g=cx.createLinearGradient(0,0,600,600);
+			g.addColorStop(0.2,"rgb(255,100,180,0.7)");
+			g.addColorStop(0.5,"rgb(100,130,80,0.2)");
+			g.addColorStop(0.7,"rgb(150,120,200,0.5)");
+			g.addColorStop(1,"rgb(1200,140,80,0.8)");
+			cx.fillStyle=g;
+			var x=30;
+			var y=20;
+			var r=5;
+
+			for(var i=0;i<18;i++){
+			cx.beginPath();
+			cx.arc(x*i,y*i,r*i,0,Math.PI*2);
+			cx.closePath();
+			cx.fill();
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<canvas id="canvas" width="600px" height="600px"></canvas>
+</body>
+</html>
